@@ -16,6 +16,4 @@ public interface IUsersService {
     boolean changePassword(Users users);
 
     Users selectUserById(int id);
-
-    List<Users> selectAllUsers();
 }

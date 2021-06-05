@@ -13,7 +13,7 @@ public class BookService implements IBookService {
 
     private String jdbcUrl = "jdbc:mysql://localhost:3306/book-management";
     private String jdbcUsername = "root";
-    private String jdbcPassword = "250693";
+    private String jdbcPassword = "root";
     private static final String INSERT_BOOK_SQL = "insert into book (id, name, description, picture, status_id, category_id, author, location_id) value" +
             " (?, ?, ?, ?, ?, ?, ?);";
 
