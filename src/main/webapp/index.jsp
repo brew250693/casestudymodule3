@@ -69,7 +69,7 @@
         </div>
         <div class="navbar-nav ml-auto">
           <div class="nav-item dropdown">
-            <a href="/login.html" class="nav-item nav-link">Login & Register</a>
+            <a href="/users?action=login" class="nav-item nav-link">Login & Register</a>
           </div>
         </div>
       </div>

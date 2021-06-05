@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet(name = "Servlet", urlPatterns = "/users")
 public class UsersController extends HttpServlet {
@@ -132,9 +131,7 @@ public class UsersController extends HttpServlet {
                 RequestDispatcher dispatcher1 = req.getRequestDispatcher("login.jsp");
                 dispatcher1.forward(req, resp);
             }
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -156,9 +153,7 @@ public class UsersController extends HttpServlet {
             RequestDispatcher dispatcher = req.getRequestDispatcher("signup.jsp");
             try {
                 dispatcher.forward(req, resp);
-            } catch (ServletException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
+            } catch (ServletException | IOException e) {
                 e.printStackTrace();
             }
         }
@@ -204,13 +199,7 @@ public class UsersController extends HttpServlet {
     }
 
     private void index(HttpServletRequest req, HttpServletResponse resp) {
-//        List<Users> usersList = usersService.selectAllUsers();
-//        req.setAttribute("userList", usersList);
-
         String abc = "login-signup";
-//
-//        String userName = "";
-//        req.setAttribute("userName", userName);
 
         HttpSession session = req.getSession();
         String email = (String)session.getAttribute("emailLog");

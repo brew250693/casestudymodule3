@@ -3,20 +3,17 @@ package service.users;
 import model.Users;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UsersService implements IUsersService {
     private static final String URL = "jdbc:mysql://localhost:3306/book-management";
     private static final String USER_NAME = "root";
-    private static final String PASSWORD = "250693";
+    private static final String PASSWORD = "root";
 
     private static final String SIGN_UP = "INSERT INTO `users` (`name`, `birth`, `email`, `phone`, `password`) VALUES (?, ?, ?, ?, ?);";
     private static final String UPDATE_USER = "UPDATE `users` SET `name` = ?, `birth` = ?, `email`, `phone` = ? WHERE `id` = ?;";
     private static final String UPDATE_PASSWORD = "UPDATE `users` SET `password` = ? WHERE `id` = ?;";
     private static final String LOGIN = "SELECT * FROM `users` WHERE `email` = ? AND `password` = ?;";
     private static final String SELECT_USER_BY_ID = "SELECT * FROM `users` WHERE `id` = ?;";
-    private static final String SELECT_ALL_USERS = "SELECT * FROM `users`;";
 
 
     protected Connection getConnection() {
@@ -123,27 +120,6 @@ public class UsersService implements IUsersService {
             printSQLException(e);
         }
         return users;
-    }
-
-    @Override
-    public List<Users> selectAllUsers() {
-        System.out.println(SELECT_ALL_USERS);
-        List<Users> usersList = new ArrayList<>();
-        try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS)) {
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
-                String birth = resultSet.getString("birth");
-                String email = resultSet.getString("email");
-                String phone = resultSet.getString("phone");
-                Users users = new Users(id, name, birth, email, phone);
-                usersList.add(users);
-            }
-        } catch (SQLException e) {
-            printSQLException(e);
-        }
-        return usersList;
     }
 
     private void printSQLException(SQLException e) {
