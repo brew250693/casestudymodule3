@@ -66,6 +66,7 @@
           <a href="/book?action=statusbook" class="nav-item nav-link">Book Status</a>
           <a href="/location" class="nav-item nav-link">Location Manager</a>
           <a href="/location?action=create" class="nav-item nav-link">Location Add</a>
+          <a href="/book?action=search" class="nav-item nav-link">Search</a>
         </div>
         <div class="navbar-nav ml-auto">
           <div class="nav-item dropdown">
@@ -87,16 +88,6 @@
           <a href="/">
             <img src="img/logo.jpg" alt="Logo">
           </a>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="search">
-          <input type="text" placeholder="Search">
-          <button>
-            <a href="/book?action=search">
-            <i class="fa fa-search"></i>
-            </a>
-          </button>
         </div>
       </div>
     </div>

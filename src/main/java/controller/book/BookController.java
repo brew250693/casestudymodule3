@@ -22,8 +22,6 @@ public class BookController extends HttpServlet {
         bookService = new BookService();
     }
 
-
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -49,7 +47,8 @@ public class BookController extends HttpServlet {
                     statusBook(request, response);
                     break;
                 case "search":
-                    searchByName(request, response);
+                    showSearchByName(request, response);
+                    break;
                 default:
                     listBook(request, response);
                     break;
@@ -59,8 +58,13 @@ public class BookController extends HttpServlet {
         }
     }
 
-    private void searchByName(HttpServletRequest request, HttpServletResponse response) {
-
+    private void showSearchByName(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("search.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showCreateForm(HttpServletRequest request, HttpServletResponse response)
@@ -120,7 +124,6 @@ public class BookController extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -135,13 +138,14 @@ public class BookController extends HttpServlet {
                 case "edit":
                     updateBook(request, response);
                     break;
+                case "search":
+                    searchByName(request, response);
+                    break;
             }
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
     }
-
-
 
     private void insertBook(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
@@ -186,5 +190,20 @@ public class BookController extends HttpServlet {
         bookService.updateBook(b);
         RequestDispatcher dispatcher = request.getRequestDispatcher("edit.jsp");
         dispatcher.forward(request, response);
+    }
+
+    private void searchByName(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("search");
+
+       List<Book> book = bookService.searchByName(name);
+
+        request.setAttribute("searchByName", book);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/searchResult.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
     }
 }
