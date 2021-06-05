@@ -48,6 +48,8 @@ public class BookController extends HttpServlet {
                 case "statusbook":
                     statusBook(request, response);
                     break;
+                case "search":
+                    searchByName(request, response);
                 default:
                     listBook(request, response);
                     break;
@@ -55,6 +57,10 @@ public class BookController extends HttpServlet {
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
+    }
+
+    private void searchByName(HttpServletRequest request, HttpServletResponse response) {
+
     }
 
     private void showCreateForm(HttpServletRequest request, HttpServletResponse response)

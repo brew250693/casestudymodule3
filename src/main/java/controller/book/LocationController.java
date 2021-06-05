@@ -131,12 +131,12 @@ public class LocationController extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         String description = request.getParameter("description");
-        String book_amount = request.getParameter("amount");
-        String book_quantity = request.getParameter("quantity");
+        String book_amount = request.getParameter("book_amount");
+        String book_quanity = request.getParameter("book_quanity");
 
-        Location location = new Location(id, name, description, book_amount, book_quantity);
-        locationService.updateLocation(location);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("edit-location.jsp");
+        Location l = new Location(id, name, description, book_amount, book_quanity);
+        locationService.updateLocation(l);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("locationedit.jsp");
         dispatcher.forward(request, response);
     }
 }

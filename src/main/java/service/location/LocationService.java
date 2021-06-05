@@ -13,10 +13,10 @@ public class LocationService implements ILocationService {
     private String jdbcPassword = "250693";
 
     private static final String INSERT_LOCATION_SQL = "insert into location (id, name, description, book_amount, book_quanity) values (?,?,?,?,?)\")";
-    private static final String SELECT_LOCATION_BY_ID = "select * from location where id =?";
+    private static final String SELECT_LOCATION_BY_ID = "select * from location where id = ?";
     private static final String DELETE_LOCATION_SQL = "delete from location where id = ?;";
     public static final String SELECT_ALL_LOCATION = "select * from location";
-    private static final String UPDATE_LOCATION_SQL = "update location set name = ?, description = ?, book_amount = ?, book_quanity = ?";
+    private static final String UPDATE_LOCATION_SQL = "update location set name = ?, description = ?, book_amount = ?, book_quanity = ? where id = ?";
 
     public LocationService() {
     }
@@ -67,8 +67,8 @@ public class LocationService implements ILocationService {
                     String name = rs.getString("name");
                     String description = rs.getString("description");
                     String book_amount = rs.getString("book_amount");
-                    String book_quantity = rs.getString("book_quantity");
-                    location = new Location(name,description,book_amount,book_quantity);
+                    String book_quanity = rs.getString("book_quanity");
+                    location = new Location(name,description,book_amount,book_quanity);
                 }
             }
         } catch (SQLException throwables) {
@@ -124,6 +124,9 @@ public class LocationService implements ILocationService {
             preparedStatement.setString(2, location.getDescription());
             preparedStatement.setString(3, location.getBook_amount());
             preparedStatement.setString(4, location.getBook_quanity());
+            preparedStatement.setInt(5, location.getId());
+
+
             rowUpdate = preparedStatement.executeUpdate() > 0;
         }
         return rowUpdate;

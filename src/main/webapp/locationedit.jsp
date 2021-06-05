@@ -1,6 +1,20 @@
 <%--
   Created by IntelliJ IDEA.
   User: Brew
+  Date: 6/5/2021
+  Time: 1:43 AM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Edit Location</title>
+</head>
+<body>
+
+</body><%--
+  Created by IntelliJ IDEA.
+  User: Brew
   Date: 5/27/2021
   Time: 4:44 PM
   To change this template use File | Settings | File Templates.
@@ -11,7 +25,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Book Manager</title>
+    <title>Location edit</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="eCommerce HTML Template Free Download" name="keywords">
     <meta content="eCommerce HTML Template Free Download" name="description">
@@ -61,8 +75,8 @@
 
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav mr-auto">
-                    <a href="/" class="nav-item nav-link">Home</a>
-                    <a href="/book" class="nav-item nav-link active">Book Manager</a>
+                    <a href="/" class="nav-item nav-link active">Home</a>
+                    <a href="/book" class="nav-item nav-link">Book Manager</a>
                     <a href="/book?action=create" class="nav-item nav-link">Book Add</a>
                     <a href="/book?action=statusbook" class="nav-item nav-link">Book Status</a>
                     <a href="/location" class="nav-item nav-link">Location Manager</a>
@@ -95,38 +109,54 @@
 <!-- Bottom Bar End -->
 
 <center>
-    <h1>Book Management</h1>
+    <h1>Location Edit</h1>
+    <h2>
+        <a href="/location">Hiển thị danh sách vị trí để sách</a>
+    </h2>
 </center>
 <div align="center">
     <form method="post">
         <div align="center">
             <table border="1" cellpadding="5">
+                <caption>
+                    <h2>Edit Location</h2>
+                </caption>
+                <c:if test="${location != null}">
+                    <input type="hidden" name="id" value=${location.id}/>
+                </c:if>
                 <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Author</th>
-                    <th>Category</th>
-                    <th>Status</th>
-                    <th>Location Name</th>
-                    <th>Picture</th>
+                    <th>Location Name:</th>
+                    <td>
+                        <input type="text" name="name" size="45" value="<c:out value='${location.name}'/>"/>
+                    </td>
                 </tr>
-                <c:forEach var="book" items="${listBook}">
-                    <tr>
-                        <td><c:out value="${book.id}"/></td>
-                        <td><c:out value="${book.name}"/></td>
-                        <td><c:out value="${book.description}"/></td>
-                        <td><c:out value="${book.author}"/></td>
-                        <td><c:out value="${book.category.name}"/></td>
-                        <td><c:out value="${book.status.name}"/></td>
-                        <td><c:out value="${book.location.name}"/></td>
-                        <td><img src="${book.picture}" width="100" height="100"></td>
-                        <td>
-                            <a href="/book?action=edit&id=${book.id}">Edit</a>
-                            <a href="/book?action=delete&id=${book.id}">Delete</a>
-                        </td>
-                    </tr>
-                </c:forEach>
+
+                <tr>
+                    <th>Description:</th>
+                    <td>
+                        <input type="text" name="description" size="45" value="<c:out value='${location.description}'/>"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Sức chứa(Cuốn sách):</th>
+                    <td>
+                        <input type="text" name="book_amount" size="45" value="<c:out value='${book.book_amount}'/>"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Đã chứa(Cuốn sách):</th>
+                    <td>
+                        <input type="text" name="book_quanity" size="45" value="<c:out value='${book.book_quanity}'/>"/>
+                    </td>
+                </tr>
+
+                </tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Save"/>
+                </td>
+                </tr>
             </table>
         </div>
         <h4>
@@ -357,4 +387,4 @@
 </body>
 </html>
 
-
+</html>

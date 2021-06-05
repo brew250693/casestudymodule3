@@ -61,12 +61,12 @@
 
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav mr-auto">
-                    <a href="/" class="nav-item nav-link active">Home</a>
+                    <a href="/" class="nav-item nav-link ">Home</a>
                     <a href="/book" class="nav-item nav-link">Book Manager</a>
                     <a href="/book?action=create" class="nav-item nav-link">Book Add</a>
                     <a href="/book?action=statusbook" class="nav-item nav-link">Book Status</a>
                     <a href="/location" class="nav-item nav-link">Location Manager</a>
-                    <a href="/location?action=create" class="nav-item nav-link">Location Add</a>
+                    <a href="/location?action=create" class="nav-item nav-link active">Location Add</a>
                 </div>
                 <div class="navbar-nav ml-auto">
                     <div class="nav-item dropdown">
@@ -95,7 +95,7 @@
 <!-- Bottom Bar End -->
 
 <center>
-    <h1>Book Management</h1>
+    <h1>Location Management</h1>
     <h2>
         <a href="/location">Hiển thị danh sách vị trí để sách</a>
     </h2>

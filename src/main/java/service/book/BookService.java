@@ -37,7 +37,6 @@ public class BookService implements IBookService {
     private static final String SELECT_LOCATION_BY_ID = "select * from location where id = ?";
 
 
-
     public BookService() {
     }
 

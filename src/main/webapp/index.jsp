@@ -92,7 +92,11 @@
       <div class="col-md-6">
         <div class="search">
           <input type="text" placeholder="Search">
-          <button><i class="fa fa-search"></i></button>
+          <button>
+            <a href="/book?action=search">
+            <i class="fa fa-search"></i>
+            </a>
+          </button>
         </div>
       </div>
     </div>
