@@ -2,19 +2,43 @@ package model;
 
 public class Users {
     private int id;
-    private String name, birth, email, phone, avatar, password;
+    private String name;
+    private String birth;
+    private String email;
+    private String phone;
+    private String password;
 
-    public Users() {
+
+    public Users(String name, String birth, String email, String phone, String password) {
+        this.name = name;
+        this.birth = birth;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
     }
 
-    public Users(int id, String name, String birth, String email, String phone, String avatar, String password) {
+    public Users(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
+    public Users(String name, String birth, String email, String phone) {
+        this.name = name;
+        this.birth = birth;
+        this.email = email;
+        this.phone = phone;
+    }
+
+    public Users(String newPass) {
+        this.password = newPass;
+    }
+
+    public Users(int id, String name, String birth, String email, String phone) {
         this.id = id;
         this.name = name;
         this.birth = birth;
         this.email = email;
         this.phone = phone;
-        this.avatar = avatar;
-        this.password = password;
     }
 
     public int getId() {
@@ -55,14 +79,6 @@ public class Users {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
     }
 
     public String getPassword() {
