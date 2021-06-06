@@ -111,8 +111,9 @@ public class UsersService implements IUsersService {
                 String name = resultSet.getString("name");
                 String birth = resultSet.getString("birth");
                 String phone = resultSet.getString("phone");
+                String email1 = resultSet.getString("email");
                 String password = resultSet.getString("password");
-                users = new Users(id, name, birth, phone, password);
+                users = new Users(id, name, birth, phone, email1, password);
             }
         } catch (SQLException e) {
             printSQLException(e);

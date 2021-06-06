@@ -8,22 +8,6 @@ public class Users {
     private String phone;
     private String password;
 
-
-    public Users(String name, String birth, String email, String phone, String password) {
-        this.name = name;
-        this.birth = birth;
-        this.email = email;
-        this.phone = phone;
-        this.password = password;
-    }
-
-    public Users(String name, String birth, String email, String phone) {
-        this.name = name;
-        this.birth = birth;
-        this.email = email;
-        this.phone = phone;
-    }
-
     public Users(int id, String name, String birth, String email, String phone) {
         this.id = id;
         this.name = name;
@@ -34,6 +18,23 @@ public class Users {
 
     public Users(int id, String password) {
         this.id = id;
+        this.password = password;
+    }
+
+    public Users(int id, String name, String birth, String phone, String email, String password) {
+        this.id = id;
+        this.name = name;
+        this.birth = birth;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
+    }
+
+    public Users(String name, String birth, String email, String phone, String password) {
+        this.name = name;
+        this.birth = birth;
+        this.email = email;
+        this.phone = phone;
         this.password = password;
     }
 
