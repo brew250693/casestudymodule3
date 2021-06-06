@@ -69,13 +69,14 @@
                         <a href="/book?action=statusbook" class="nav-item nav-link">Book Status</a>
                         <a href="/location" class="nav-item nav-link">Location Manager</a>
                         <a href="/location?action=create" class="nav-item nav-link">Location Add</a>
+                        <a href="/book?action=search" class="nav-item nav-link">Search</a>
                     </div>
                     <div class="navbar-nav ml-auto">
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle active">My Account</a>
+                            <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">My Account</a>
                             <div class="dropdown-menu">
-                                <a href="/users?action=account-details" class="dropdown-item">Account Details</a>
-                                <a href="/users?action=change-password" class="dropdown-item active">Change Password</a>
+                                <a href="/users?action=editProfile" class="dropdown-item">Account Details</a>
+                                <a href="/users?action=changePass" class="dropdown-item active">Change Password</a>
                                 <a href="index.jsp" class="dropdown-item">Log out</a>
                             </div>
                         </div>

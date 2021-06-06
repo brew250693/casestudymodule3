@@ -10,7 +10,7 @@ public class LocationService implements ILocationService {
 
     private String jdbcUrl = "jdbc:mysql://localhost:3306/book-management";
     private String jdbcUsername = "root";
-    private String jdbcPassword = "250693";
+    private String jdbcPassword = "root";
 
     private static final String INSERT_LOCATION_SQL = "insert into location (id, name, description, book_amount, book_quanity) values (?,?,?,?,?)\")";
     private static final String SELECT_LOCATION_BY_ID = "select * from location where id = ?";
