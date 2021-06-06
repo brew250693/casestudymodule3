@@ -61,8 +61,8 @@
 
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav mr-auto">
-                    <a href="/" class="nav-item nav-link">Home</a>
-                    <a href="/book" class="nav-item nav-link active">Book Manager</a>
+                    <a href="/" class="nav-item nav-link active">Home</a>
+                    <a href="/book" class="nav-item nav-link">Book Manager</a>
                     <a href="/book?action=create" class="nav-item nav-link">Book Add</a>
                     <a href="/book?action=statusbook" class="nav-item nav-link">Book Status</a>
                     <a href="/location" class="nav-item nav-link">Location Manager</a>
@@ -96,7 +96,7 @@
 <!-- Bottom Bar End -->
 
 <center>
-    <h1>Book Management</h1>
+    <h1>Book Name</h1>
 </center>
 <div align="center">
     <form method="post">

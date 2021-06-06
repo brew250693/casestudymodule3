@@ -141,11 +141,30 @@ public class BookController extends HttpServlet {
                 case "search":
                     searchByName(request, response);
                     break;
+                case "searchStatus":
+                    searchByStatus(request, response);
+                    break;
             }
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
     }
+
+    private void searchByStatus(HttpServletRequest request, HttpServletResponse response) {
+        String status = request.getParameter("searchStatus");
+
+        List<Book> book = bookService.searchByStatus(status);
+
+        request.setAttribute("searchByStatus", book);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/searchByStatus.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private void insertBook(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {

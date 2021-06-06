@@ -61,8 +61,8 @@
 
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav mr-auto">
-                    <a href="/" class="nav-item nav-link active">Home</a>
-                    <a href="/book" class="nav-item nav-link">Book Manager</a>
+                    <a href="/" class="nav-item nav-link">Home</a>
+                    <a href="/book" class="nav-item nav-link active">Book Manager</a>
                     <a href="/book?action=create" class="nav-item nav-link">Book Add</a>
                     <a href="/book?action=statusbook" class="nav-item nav-link">Book Status</a>
                     <a href="/location" class="nav-item nav-link">Location Manager</a>
@@ -105,15 +105,23 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
+                    <th>Description</th>
+                    <th>Author</th>
+                    <th>Category</th>
                     <th>Status</th>
-
+                    <th>Location Name</th>
+                    <th>Picture</th>
                 </tr>
-                <c:forEach var="book" items="${listBook}">
+                <c:forEach var="book" items="${searchByStatus}">
                     <tr>
                         <td><c:out value="${book.id}"/></td>
                         <td><c:out value="${book.name}"/></td>
+                        <td><c:out value="${book.description}"/></td>
+                        <td><c:out value="${book.author}"/></td>
+                        <td><c:out value="${book.category.name}"/></td>
                         <td><c:out value="${book.status.name}"/></td>
-
+                        <td><c:out value="${book.location.name}"/></td>
+                        <td><img src="${book.picture}" width="100" height="100"></td>
                     </tr>
                 </c:forEach>
             </table>
