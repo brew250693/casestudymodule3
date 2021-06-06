@@ -11,7 +11,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Sign Up</title>
+    <title>Login</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="eCommerce HTML Template Free Download" name="keywords">
     <meta content="eCommerce HTML Template Free Download" name="description">
@@ -67,41 +67,53 @@
 </div>
 <!-- Bottom Bar End -->
 
-<!-- SignUp Start -->
+<!-- Login Start -->
 <form method="post">
-    <div class="row" align="center">
-        <h1>Sign up</h1>
-        <div class="col-md-6">
-            <label>Họ và tên</label>
-            <input name="nameRes" type="text" placeholder="Họ và tên">
-        </div>
-        <div class="col-md-6">
-            <label>Ngày sinh</label>
-            <input name="birthRes" type="text" placeholder="Ngày sinh">
-        </div>
-        <div class="col-md-6">
-            <label>E-mail</label>
-            <input name="emailRes" type="text" placeholder="E-mail">
-        </div>
-        <div class="col-md-6">
-            <label>Số điện thoại</label>
-            <input name="phoneRes" type="text" placeholder="Số điện thoại">
-        </div>
-        <div class="col-md-6">
-            <label>Mật khẩu</label>
-            <input name="passwordRes" type="password" placeholder="Mật khẩu">
-        </div>
-        <div class="col-md-6">
-            <label>Nhập lại mật khẩu</label>
-            <input name="retypePass" type="password" placeholder="Nhập lại mật khẩu">
-        </div>
-        <div class="col-md-12">
-            <input class="btn" type="submit" value="Đăng ký"/>
+    <div class="login">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="register-form">
+                        <h2>Sign up</h2>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Họ và tên</label>
+                                <input name="nameRes" type="text" placeholder="Họ và tên">
+                            </div>
+                            <div class="col-md-6">
+                                <label>Ngày sinh</label>
+                                <input name="birthRes" type="text" placeholder="Ngày sinh">
+                            </div>
+                            <div class="col-md-6">
+                                <label>E-mail</label>
+                                <input name="emailRes" type="text" placeholder="E-mail">
+                            </div>
+                            <div class="col-md-6">
+                                <label>Số điện thoại</label>
+                                <input name="phoneRes" type="text" placeholder="Số điện thoại">
+                            </div>
+                            <div class="col-md-6">
+                                <label>Mật khẩu</label>
+                                <input name="passwordRes" type="password" placeholder="Mật khẩu">
+                            </div>
+                            <div class="col-md-6">
+                                <label>Nhập lại mật khẩu</label>
+                                <input name="retypePass" type="password" placeholder="Nhập lại mật khẩu">
+                            </div>
+                            <div class="col-md-12">
+                                <input class="btn" type="submit" value="Đăng ký"/>
+                            </div>
+                            <div class="col-md-12">
+                                <a href="/users?action=login">Quay lại đăng nhập</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <a href="/users?action=login">login</a>
 </form>
-<!-- SignUp End -->
+<!-- Login End -->
 
 <!-- Footer Start -->
 <div class="footer">

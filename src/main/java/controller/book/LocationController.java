@@ -17,14 +17,12 @@ import java.util.List;
 
 @WebServlet(name = "LocationController", value = "/location")
 public class LocationController extends HttpServlet {
-
     private static final long serialVersionUID = 1L;
     private LocationService locationService;
 
     public void init() {
         locationService = new LocationService();
     }
-
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -89,7 +87,6 @@ public class LocationController extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -109,8 +106,6 @@ public class LocationController extends HttpServlet {
             throw new ServletException(ex);
         }
     }
-
-
 
     private void insertLocation(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {

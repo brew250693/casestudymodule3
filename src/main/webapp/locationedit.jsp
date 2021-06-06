@@ -75,7 +75,7 @@
 
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav mr-auto">
-                    <a href="/" class="nav-item nav-link active">Home</a>
+                    <a href="index2.jsp" class="nav-item nav-link active">Home</a>
                     <a href="/book" class="nav-item nav-link">Book Manager</a>
                     <a href="/book?action=create" class="nav-item nav-link">Book Add</a>
                     <a href="/book?action=statusbook" class="nav-item nav-link">Book Status</a>
@@ -84,7 +84,12 @@
                 </div>
                 <div class="navbar-nav ml-auto">
                     <div class="nav-item dropdown">
-                        <a href="/login.html" class="nav-item nav-link">Login & Register</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Account</a>
+                        <div class="dropdown-menu">
+                            <a href="/users?action=editProfile" class="dropdown-item">Account Details</a>
+                            <a href="/users?action=changePass" class="dropdown-item">Change Password</a>
+                            <a href="index.jsp" class="dropdown-item">Log out</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -98,7 +103,7 @@
         <div class="row align-items-center">
             <div class="col-md-3">
                 <div class="logo">
-                    <a href="/">
+                    <a href="index2.jsp">
                         <img src="img/logo.jpg" alt="Logo">
                     </a>
                 </div>

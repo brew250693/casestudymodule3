@@ -69,8 +69,11 @@ public class UsersController extends HttpServlet {
     }
 
     private void logout(HttpServletRequest req, HttpServletResponse resp) {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("signup.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("login.jsp");
         try {
+            HttpSession session = req.getSession();
+            session.invalidate();
+
             dispatcher.forward(req, resp);
         } catch (ServletException | IOException e) {
             e.printStackTrace();
@@ -78,7 +81,13 @@ public class UsersController extends HttpServlet {
     }
 
     private void showChangePassForm(HttpServletRequest req, HttpServletResponse resp) {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("my-account.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("changePass.jsp");
+
+        HttpSession session = req.getSession();
+        String email = (String) session.getAttribute("emailLog");
+        Users users = usersService.selectUserByEmail(email);
+        req.setAttribute("user", users);
+
         try {
             dispatcher.forward(req, resp);
         } catch (ServletException | IOException e) {
@@ -87,7 +96,13 @@ public class UsersController extends HttpServlet {
     }
 
     private void showEditProfileForm(HttpServletRequest req, HttpServletResponse resp) {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("my-account.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("editProfile.jsp");
+
+        HttpSession session = req.getSession();
+        String email1 = (String) session.getAttribute("emailLog");
+        Users users = usersService.selectUserByEmail(email1);
+        req.setAttribute("user", users);
+
         try {
             dispatcher.forward(req, resp);
         } catch (ServletException | IOException e) {
@@ -125,7 +140,7 @@ public class UsersController extends HttpServlet {
             if (usersService.login(emailLog, passwordLog)) {
                 HttpSession session = req.getSession();
                 session.setAttribute("emailLog", emailLog);
-                RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
+                RequestDispatcher dispatcher = req.getRequestDispatcher("index2.jsp");
                 dispatcher.forward(req, resp);
             } else {
                 RequestDispatcher dispatcher1 = req.getRequestDispatcher("login.jsp");
@@ -150,7 +165,7 @@ public class UsersController extends HttpServlet {
             Users users = new Users(name, birth, emailRes, phone, passwordRes);
             System.out.println(users);
             usersService.signUp(users);
-            RequestDispatcher dispatcher = req.getRequestDispatcher("signup.jsp");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("login.jsp");
             try {
                 dispatcher.forward(req, resp);
             } catch (ServletException | IOException e) {
@@ -160,9 +175,10 @@ public class UsersController extends HttpServlet {
     }
 
     private void changePass(HttpServletRequest req, HttpServletResponse resp) {
-        String oldPass = req.getParameter("oldPass");
+        int id = Integer.parseInt(req.getParameter("id"));
+        String oldPass = req.getParameter("currentPass");
         String newPass = req.getParameter("newPass");
-        String reptypePass = req.getParameter("reptypePass");
+        String reptypePass = req.getParameter("confirmPass");
 
         if (oldPass.equals(newPass)) {
             System.out.println("Trùng mật khẩu cũ!");
@@ -170,9 +186,9 @@ public class UsersController extends HttpServlet {
             if (!newPass.equals(reptypePass)) {
                 System.out.println("Mật khẩu không trùng khớp!");
             } else {
-                Users users = new Users(newPass);
+                Users users = new Users(id, newPass);
                 usersService.changePassword(users);
-                RequestDispatcher dispatcher = req.getRequestDispatcher("my-account.jsp");
+                RequestDispatcher dispatcher = req.getRequestDispatcher("changePass.jsp");
                 try {
                     dispatcher.forward(req, resp);
                 } catch (ServletException | IOException e) {
@@ -180,17 +196,20 @@ public class UsersController extends HttpServlet {
                 }
             }
         }
+
     }
 
     private void editProfile(HttpServletRequest req, HttpServletResponse resp) {
-        String name = req.getParameter("name");
-        String birth = req.getParameter("birth");
-        String email = req.getParameter("email");
-        String phone = req.getParameter("phone");
+        int id = Integer.parseInt(req.getParameter("id"));
+        String name = req.getParameter("nameEdit");
+        String birth = req.getParameter("birthEdit");
+        String email = req.getParameter("emailEdit");
+        String phone = req.getParameter("phoneEdit");
 
-        Users users = new Users(name, birth, email, phone);
+        Users users = new Users(id, name, birth, email, phone);
         usersService.updateProfile(users);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("my-account.jsp");
+
+        RequestDispatcher dispatcher = req.getRequestDispatcher("editProfile.jsp");
         try {
             dispatcher.forward(req, resp);
         } catch (ServletException | IOException e) {
@@ -202,13 +221,13 @@ public class UsersController extends HttpServlet {
         String abc = "login-signup";
 
         HttpSession session = req.getSession();
-        String email = (String)session.getAttribute("emailLog");
+        String email = (String) session.getAttribute("emailLog");
         if (email != null) {
-           abc = "Xin chào" + email;
+            abc = "Xin chào" + email;
         }
         req.setAttribute("abc", abc);
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("index2.jsp");
 
         try {
             dispatcher.forward(req, resp);

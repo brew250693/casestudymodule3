@@ -10,11 +10,10 @@ public class UsersService implements IUsersService {
     private static final String PASSWORD = "root";
 
     private static final String SIGN_UP = "INSERT INTO `users` (`name`, `birth`, `email`, `phone`, `password`) VALUES (?, ?, ?, ?, ?);";
-    private static final String UPDATE_USER = "UPDATE `users` SET `name` = ?, `birth` = ?, `email`, `phone` = ? WHERE `id` = ?;";
+    private static final String UPDATE_USER = "UPDATE `users` SET `name` = ?, `birth` = ?, `email` = ?, `phone` = ? WHERE `id` = ?;";
     private static final String UPDATE_PASSWORD = "UPDATE `users` SET `password` = ? WHERE `id` = ?;";
     private static final String LOGIN = "SELECT * FROM `users` WHERE `email` = ? AND `password` = ?;";
-    private static final String SELECT_USER_BY_ID = "SELECT * FROM `users` WHERE `id` = ?;";
-
+    private static final String SELECT_USER_BY_EMAIL = "SELECT * FROM `users` WHERE `email` = ?;";
 
     protected Connection getConnection() {
         Connection connection = null;
@@ -65,11 +64,6 @@ public class UsersService implements IUsersService {
     }
 
     @Override
-    public boolean logout() {
-        return false;
-    }
-
-    @Override
     public boolean updateProfile(Users users) {
         System.out.println(UPDATE_USER);
         boolean rowUpdated = false;
@@ -81,6 +75,7 @@ public class UsersService implements IUsersService {
             preparedStatement.setInt(5, users.getId());
 
             rowUpdated = preparedStatement.executeUpdate() > 0;
+            System.out.println(rowUpdated);
         } catch (SQLException e) {
             printSQLException(e);
         }
@@ -96,6 +91,7 @@ public class UsersService implements IUsersService {
             preparedStatement.setInt(2, users.getId());
 
             rowUpdated = preparedStatement.executeUpdate() > 0;
+            System.out.println(rowUpdated);
         } catch (SQLException e) {
             printSQLException(e);
         }
@@ -103,18 +99,20 @@ public class UsersService implements IUsersService {
     }
 
     @Override
-    public Users selectUserById(int id) {
-        System.out.println(SELECT_USER_BY_ID);
+    public Users selectUserByEmail(String email) {
+        System.out.println(SELECT_USER_BY_EMAIL);
         Users users = null;
-        try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_ID)) {
-            preparedStatement.setInt(1, users.getId());
+        try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_EMAIL)) {
+            preparedStatement.setString(1, email);
+
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
+                int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 String birth = resultSet.getString("birth");
-                String email = resultSet.getString("email");
                 String phone = resultSet.getString("phone");
-                users = new Users(id, name, birth, email, phone);
+                String password = resultSet.getString("password");
+                users = new Users(id, name, birth, phone, password);
             }
         } catch (SQLException e) {
             printSQLException(e);

@@ -69,20 +69,34 @@
 
 <!-- Login Start -->
 <form method="post">
-    <div class="col-lg-12" align="center">
-        <h1>Login</h1>
-        <div class="login-form">
+    <div class="login">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-md-6">
-                    <label>E-mail</label>
-                    <input class="form-control" name="emailLog" type="text" placeholder="E-mail">
-                </div>
-                <div class="col-md-6">
-                    <label>Mật khẩu</label>
-                    <input class="form-control" name="passwordLog" type="text" placeholder="Mật khẩu">
-                </div>
-                <div class="col-md-12">
-                    <input class="btn" type="submit" value="Đăng nhập">
+                <div class="col-lg-6">
+                    <center>
+                        <div class="login-form">
+                            <h2>Đăng nhập</h2>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>E-mail</label>
+                                    <input class="form-control" name="emailLog" type="text" placeholder="E-mail"
+                                           size="300px">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Mật khẩu</label>
+                                    <input class="form-control" name="passwordLog" type="password"
+                                           placeholder="Mật khẩu"
+                                           size="300px">
+                                </div>
+                                <div class="col-md-12">
+                                    <input class="btn" type="submit" value="Đăng nhập">
+                                </div>
+                                <div class="col-md-12">
+                                    <a href="/users?action=signup">Chưa có tài khoản ?</a>
+                                </div>
+                            </div>
+                        </div>
+                    </center>
                 </div>
             </div>
         </div>

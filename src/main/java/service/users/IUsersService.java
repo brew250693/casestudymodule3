@@ -9,11 +9,9 @@ public interface IUsersService {
 
     boolean login(String email, String password);
 
-    boolean logout();
-
     boolean updateProfile(Users users);
 
     boolean changePassword(Users users);
 
-    Users selectUserById(int id);
+    Users selectUserByEmail(String email);
 }

@@ -17,20 +17,11 @@ public class Users {
         this.password = password;
     }
 
-    public Users(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
-
     public Users(String name, String birth, String email, String phone) {
         this.name = name;
         this.birth = birth;
         this.email = email;
         this.phone = phone;
-    }
-
-    public Users(String newPass) {
-        this.password = newPass;
     }
 
     public Users(int id, String name, String birth, String email, String phone) {
@@ -39,6 +30,11 @@ public class Users {
         this.birth = birth;
         this.email = email;
         this.phone = phone;
+    }
+
+    public Users(int id, String password) {
+        this.id = id;
+        this.password = password;
     }
 
     public int getId() {
