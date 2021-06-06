@@ -13,7 +13,7 @@ public class BookService implements IBookService {
 
     private String jdbcUrl = "jdbc:mysql://localhost:3306/book-management";
     private String jdbcUsername = "root";
-    private String jdbcPassword = "root";
+    private String jdbcPassword = "250693";
     private static final String INSERT_BOOK_SQL = "insert into book (id, name, description, picture, status_id, category_id, author, location_id) value" +
             " (?, ?, ?, ?, ?, ?, ?);";
 
@@ -35,6 +35,8 @@ public class BookService implements IBookService {
     private static final String SELECT_STATUS_BY_ID = "select * from status where id = ?";
     private static final String SELECT_CATEGORY_BY_ID = "select * from category where id = ?";
     private static final String SELECT_LOCATION_BY_ID = "select * from location where id = ?";
+    private static final String SEARCH_BY_NAME = "select * from book where name like ?";
+    private static final String SEARCH_BY_STATUS = "select * from status where name like ?";
 
 
     public BookService() {
@@ -303,6 +305,84 @@ public class BookService implements IBookService {
             throwables.printStackTrace();
         }
         return category;
+    }
+
+    @Override
+    public List<Book>  searchByName(String name) {
+        List<Book> bookList = new ArrayList<>();
+        Connection connection = getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_BY_NAME);
+            {
+                preparedStatement.setString(1, "%" + name + "%");
+                System.out.println(preparedStatement);
+                ResultSet rs = preparedStatement.executeQuery();
+                while (rs.next()) {
+                    int id = rs.getInt("id");
+                    String name1 = rs.getString("name");
+                    String description = rs.getString("description");
+                    String picture = rs.getString("picture");
+
+                    int status_id = rs.getInt("status_id");
+                    Status status = getStatusById(status_id);
+
+                    int category_id = rs.getInt("category_id");
+                    Category category = getCategoryById(category_id);
+
+                    String author = rs.getString("author");
+
+                    int location_id = rs.getInt("location_id");
+                    Location location = getLocationById(location_id);
+                    Book book = new Book(id, name1, description, picture, status, category, author, location);
+                    bookList.add(book);
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return bookList;
+    }
+
+    @Override
+    public List<Book> searchByStatus(String Status) {
+        List<Book> bookList = new ArrayList<>();
+        Connection connection = getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_BY_STATUS);
+            {
+                preparedStatement.setString(1, "%" + Status + "%");
+                System.out.println(preparedStatement);
+                ResultSet rs = preparedStatement.executeQuery();
+                while (rs.next()) {
+                    int id = rs.getInt("id");
+                    String name1 = rs.getString("name");
+                    String description = rs.getString("description");
+                    String picture = rs.getString("picture");
+
+                    int status_id = rs.getInt("status_id");
+                    Status status = getStatusById(status_id);
+
+                    int category_id = rs.getInt("category_id");
+                    Category category = getCategoryById(category_id);
+
+                    String author = rs.getString("author");
+
+                    int location_id = rs.getInt("location_id");
+                    Location location = getLocationById(location_id);
+                    Book book = new Book(id, name1, description, picture, status, category, author, location);
+                    bookList.add(book);
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return bookList;
+
+    }
+
+    @Override
+    public Book searhByLocation(String locationName) {
+        return null;
     }
 
     @Override

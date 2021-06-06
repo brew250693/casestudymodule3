@@ -11,7 +11,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Book Create</title>
+    <title>Book Manager</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="eCommerce HTML Template Free Download" name="keywords">
     <meta content="eCommerce HTML Template Free Download" name="description">
@@ -61,9 +61,9 @@
 
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav mr-auto">
-                    <a href="index2.jsp" class="nav-item nav-link ">Home</a>
+                    <a href="/" class="nav-item nav-link active">Home</a>
                     <a href="/book" class="nav-item nav-link">Book Manager</a>
-                    <a href="/book?action=create" class="nav-item nav-link active">Book Add</a>
+                    <a href="/book?action=create" class="nav-item nav-link">Book Add</a>
                     <a href="/book?action=statusbook" class="nav-item nav-link">Book Status</a>
                     <a href="/location" class="nav-item nav-link">Location Manager</a>
                     <a href="/location?action=create" class="nav-item nav-link">Location Add</a>
@@ -71,12 +71,7 @@
                 </div>
                 <div class="navbar-nav ml-auto">
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">My Account</a>
-                        <div class="dropdown-menu">
-                            <a href="/users?action=editProfile" class="dropdown-item">Account Details</a>
-                            <a href="/users?action=changePass" class="dropdown-item">Change Password</a>
-                            <a href="index.jsp" class="dropdown-item">Log out</a>
-                        </div>
+                        <a href="/login.html" class="nav-item nav-link">Login & Register</a>
                     </div>
                 </div>
             </div>
@@ -101,74 +96,36 @@
 <!-- Bottom Bar End -->
 
 <center>
-    <h1>Book Management</h1>
-    <h2>
-        <a href="/book">Hiển thị danh sách</a>
-    </h2>
+    <h1>Book Name</h1>
 </center>
 <div align="center">
     <form method="post">
-        <table border="1" cellpadding="5">
-            <tr>
-                <th>Book Name:</th>
-                <td>
-                    <input type="text" name="name" id="name" size="45"/>
-                </td>
-            </tr>
-            <tr>
-                <th>Book Description:</th>
-                <td>
-                    <input type="text" name="description" id="description" size="45"/>
-                </td>
-            </tr>
-            <tr>
-                <th>Book Picture:</th>
-                <td>
-                    <input type="text" name="picture" id="picture" size="45"/>
-                </td>
-            </tr>
-            <tr>
-                <th>Book Status:</th>
-                <td>
-                    <select name="status_id">
-                        <c:forEach items="${status}" var="status">
-                            <option value="${status.id}" >${status.name}</option>
-                        </c:forEach>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <th>Category Name:</th>
-                <td>
-                    <select name="category_id">
-                        <c:forEach items="${category}" var="category">
-                            <option value="${category.id}" >${category.name}</option>
-                        </c:forEach>
-                    </select>                        
-                </td>
-            </tr>
-            <tr>
-                <th>Book Author:</th>
-                <td>
-                    <input type="text" name="author" id="author" size="45"/>
-                </td>
-            </tr>
-            <tr>
-                <th>Book Location:</th>
-                <td>
-                    <select name="location_id">
-                        <c:forEach items="${location}" var="location">
-                            <option value="${location.id}" >${location.name}</option>
-                        </c:forEach>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" align="center">
-                    <input type="submit" value="Save"/>
-                </td>
-            </tr>
-        </table>
+        <div align="center">
+            <table border="1" cellpadding="5">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Author</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                    <th>Location Name</th>
+                    <th>Picture</th>
+                </tr>
+                <c:forEach var="book" items="${searchByName}">
+                    <tr>
+                        <td><c:out value="${book.id}"/></td>
+                        <td><c:out value="${book.name}"/></td>
+                        <td><c:out value="${book.description}"/></td>
+                        <td><c:out value="${book.author}"/></td>
+                        <td><c:out value="${book.category.name}"/></td>
+                        <td><c:out value="${book.status.name}"/></td>
+                        <td><c:out value="${book.location.name}"/></td>
+                        <td><img src="${book.picture}" width="100" height="100"></td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </div>
         <h4>
             <a href="/">Quay lại trang chủ</a>
         </h4>
@@ -396,3 +353,5 @@
 <script src="js/main.js"></script>
 </body>
 </html>
+
+

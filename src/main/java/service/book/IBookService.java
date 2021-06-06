@@ -31,7 +31,8 @@ public interface IBookService {
     Category getCategoryById(int categoryId);
     Location getLocationById(int locationId);
 
-//    Book searchByName(String name);
-//
-//    Book searhByLocation(String locationName);
+    List<Book> searchByName(String name);
+    List<Book> searchByStatus(String Status);
+
+    Book searhByLocation(String locationName);
 }

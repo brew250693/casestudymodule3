@@ -67,6 +67,7 @@
                     <a href="/book?action=statusbook" class="nav-item nav-link active">Book Status</a>
                     <a href="/location" class="nav-item nav-link">Location Manager</a>
                     <a href="/location?action=create" class="nav-item nav-link">Location Add</a>
+                    <a href="/book?action=search" class="nav-item nav-link">Search</a>
                 </div>
                 <div class="navbar-nav ml-auto">
                     <div class="nav-item dropdown">
@@ -89,7 +90,7 @@
         <div class="row align-items-center">
             <div class="col-md-3">
                 <div class="logo">
-                    <a href="index2.jsp">
+                    <a href="/">
                         <img src="img/logo.jpg" alt="Logo">
                     </a>
                 </div>
