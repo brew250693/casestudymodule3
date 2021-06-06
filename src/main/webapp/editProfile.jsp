@@ -105,29 +105,34 @@
 
     <!-- Account Details Start -->
     <center>
-        <h2>Account Details</h2>
-        <div class="row">
-            <c:if test="${user != null}">
-                <input type="hidden" name="id" value="<c:out value='${user.id}'/>"/>
-            </c:if>
-            <div class="col-md-6">
-                <p>Họ và tên</p>
-                <input class="form-control" type="text" name="nameEdit" value="<c:out value='${user.name}'/>"/>
-            </div>
-            <div class="col-md-6">
-                <p>Ngày sinh</p>
-                <input class="form-control" type="text" name="birthEdit" value="<c:out value='${user.birth}'/>"/>
-            </div>
-            <div class="col-md-6">
-                <p>Email</p>
-                <input class="form-control" type="text" name="emailEdit" value="<c:out value='${user.email}'/>"/>
-            </div>
-            <div class="col-md-6">
-                <p>Số điện thoại</p>
-                <input class="form-control" type="text" name="phoneEdit" value="<c:out value='${user.phone}'/>"/>
-            </div>
-            <div class="col-md-12">
-                <button class="btn">Cập nhật thông tin</button>
+        <div class="container">
+            <h2>Account Details</h2>
+            <div class="row">
+                <c:if test="${user != null}">
+                    <input type="hidden" name="id" value="<c:out value='${user.id}'/>"/>
+                </c:if>
+                <div class="col-md-6">
+                    <p>Họ và tên</p>
+                    <input class="form-control" type="text" name="nameEdit" value="<c:out value='${user.name}'/>"/>
+                </div>
+                <div class="col-md-6">
+                    <p>Ngày sinh</p>
+                    <input class="form-control" type="text" name="birthEdit"
+                           value="<c:out value='${user.birth}'/>"/>
+                </div>
+                <div class="col-md-6">
+                    <p>Email</p>
+                    <input class="form-control" type="text" name="emailEdit"
+                           value="<c:out value='${user.email}'/>"/>
+                </div>
+                <div class="col-md-6">
+                    <p>Số điện thoại</p>
+                    <input class="form-control" type="text" name="phoneEdit"
+                           value="<c:out value='${user.phone}'/>"/>
+                </div>
+                <div class="col-md-12">
+                    <button class="btn"  style="margin-bottom: 20px">Cập nhật thông tin</button>
+                </div>
             </div>
         </div>
     </center>

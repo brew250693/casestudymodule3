@@ -70,43 +70,45 @@
 <!-- Login Start -->
 <form method="post">
     <div class="login">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <div class="register-form">
-                        <h2>Sign up</h2>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Họ và tên</label>
-                                <input name="nameRes" type="text" placeholder="Họ và tên">
+                        <center>
+                            <h2>Sign up</h2>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Họ và tên</label>
+                                    <input name="nameRes" type="text" placeholder="Họ và tên" style="width: 100%; margin-bottom: 20px;">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Ngày sinh</label>
+                                    <input name="birthRes" type="text" placeholder="Ngày sinh" style="width: 100%; margin-bottom: 20px;">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>E-mail</label>
+                                    <input name="emailRes" type="text" placeholder="E-mail" style="width: 100%; margin-bottom: 20px;">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Số điện thoại</label>
+                                    <input name="phoneRes" type="text" placeholder="Số điện thoại" style="width: 100%; margin-bottom: 20px;">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Mật khẩu</label>
+                                    <input name="passwordRes" type="password" placeholder="Mật khẩu" style="width: 100%; margin-bottom: 20px;">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Nhập lại mật khẩu</label>
+                                    <input name="retypePass" type="password" placeholder="Nhập lại mật khẩu" style="width: 100%; margin-bottom: 20px;">
+                                </div>
+                                <div class="col-md-12">
+                                    <input class="btn" type="submit" value="Đăng ký"/>
+                                </div>
+                                <div class="col-md-12">
+                                    <a href="/users?action=login">Quay lại đăng nhập</a>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <label>Ngày sinh</label>
-                                <input name="birthRes" type="text" placeholder="Ngày sinh">
-                            </div>
-                            <div class="col-md-6">
-                                <label>E-mail</label>
-                                <input name="emailRes" type="text" placeholder="E-mail">
-                            </div>
-                            <div class="col-md-6">
-                                <label>Số điện thoại</label>
-                                <input name="phoneRes" type="text" placeholder="Số điện thoại">
-                            </div>
-                            <div class="col-md-6">
-                                <label>Mật khẩu</label>
-                                <input name="passwordRes" type="password" placeholder="Mật khẩu">
-                            </div>
-                            <div class="col-md-6">
-                                <label>Nhập lại mật khẩu</label>
-                                <input name="retypePass" type="password" placeholder="Nhập lại mật khẩu">
-                            </div>
-                            <div class="col-md-12">
-                                <input class="btn" type="submit" value="Đăng ký"/>
-                            </div>
-                            <div class="col-md-12">
-                                <a href="/users?action=login">Quay lại đăng nhập</a>
-                            </div>
-                        </div>
+                        </center>
                     </div>
                 </div>
             </div>
