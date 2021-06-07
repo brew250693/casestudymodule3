@@ -105,25 +105,27 @@
 
     <!-- Change Password Start -->
     <center>
-        <h2>Password change</h2>
-        <div class="row">
-            <c:if test="${user != null}">
-                <input type="hidden" name="id" value="<c:out value='${user.id}'/>"/>
-            </c:if>
-            <div class="col-md-6">
-                <p>Mật khẩu hiện tại</p>
-                <input class="form-control" type="password" name="currentPass">
-            </div>
-            <div class="col-md-6">
-                <p>Mật khẩu mới</p>
-                <input class="form-control" type="password" name="newPass">
-            </div>
-            <div class="col-md-6">
-                <p>Xác nhận mật khẩu</p>
-                <input class="form-control" type="password" name="confirmPass">
-            </div>
-            <div class="col-md-12">
-                <button class="btn">Save Changes</button>
+        <div class="container">
+            <h2>Password change</h2>
+            <div class="row">
+                <c:if test="${user != null}">
+                    <input type="hidden" name="id" value="<c:out value='${user.id}'/>"/>
+                </c:if>
+                <div class="col-md-6">
+                    <p>Mật khẩu hiện tại</p>
+                    <input class="form-control" type="password" name="currentPass">
+                </div>
+                <div class="col-md-6">
+                    <p>Mật khẩu mới</p>
+                    <input class="form-control" type="password" name="newPass">
+                </div>
+                <div class="col-md-6">
+                    <p>Xác nhận mật khẩu</p>
+                    <input class="form-control" type="password" name="confirmPass">
+                </div>
+                <div class="col-md-12">
+                    <button class="btn" style="margin-bottom: 20px">Lưu mật khẩu</button>
+                </div>
             </div>
         </div>
     </center>

@@ -70,9 +70,9 @@
 <!-- Login Start -->
 <form method="post">
     <div class="login">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <center>
                         <div class="login-form">
                             <h2>Đăng nhập</h2>

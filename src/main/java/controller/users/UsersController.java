@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @WebServlet(name = "Servlet", urlPatterns = "/users")
 public class UsersController extends HttpServlet {
@@ -140,6 +142,7 @@ public class UsersController extends HttpServlet {
             if (usersService.login(emailLog, passwordLog)) {
                 HttpSession session = req.getSession();
                 session.setAttribute("emailLog", emailLog);
+
                 RequestDispatcher dispatcher = req.getRequestDispatcher("index2.jsp");
                 dispatcher.forward(req, resp);
             } else {
@@ -155,22 +158,42 @@ public class UsersController extends HttpServlet {
         String name = req.getParameter("nameRes");
         String birth = req.getParameter("birthRes");
         String emailRes = req.getParameter("emailRes");
-        String phone = req.getParameter("phoneRes");
-        String passwordRes = req.getParameter("passwordRes");
-        String retypePass = req.getParameter("retypePass");
+        try {
+            if (!validateEmail(emailRes)) {
+                System.out.println("Email không đúng định dạng!");
 
-        if (!retypePass.equals(passwordRes)) {
-            System.out.println("Mật khẩu không trùng khớp!");
-        } else {
-            Users users = new Users(name, birth, emailRes, phone, passwordRes);
-            System.out.println(users);
-            usersService.signUp(users);
-            RequestDispatcher dispatcher = req.getRequestDispatcher("login.jsp");
-            try {
+                RequestDispatcher dispatcher = req.getRequestDispatcher("signup.jsp");
                 dispatcher.forward(req, resp);
-            } catch (ServletException | IOException e) {
-                e.printStackTrace();
+            } else {
+                String phone = req.getParameter("phoneRes");
+
+                if (!validatePhone(phone)) {
+                    System.out.println("Số điện thoại không đúng định dạng!");
+
+                    RequestDispatcher dispatcher = req.getRequestDispatcher("signup.jsp");
+                    dispatcher.forward(req, resp);
+                } else {
+                    String passwordRes = req.getParameter("passwordRes");
+                    String retypePass = req.getParameter("retypePass");
+
+
+                    if (!retypePass.equals(passwordRes)) {
+                        System.out.println("Mật khẩu không trùng khớp!");
+
+                        RequestDispatcher dispatcher = req.getRequestDispatcher("signup.jsp");
+                        dispatcher.forward(req, resp);
+                    } else {
+                        Users users = new Users(name, birth, emailRes, phone, passwordRes);
+                        System.out.println(users);
+                        usersService.signUp(users);
+
+                        RequestDispatcher dispatcher = req.getRequestDispatcher("login.jsp");
+                        dispatcher.forward(req, resp);
+                    }
+                }
             }
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -183,17 +206,18 @@ public class UsersController extends HttpServlet {
         if (oldPass.equals(newPass)) {
             System.out.println("Trùng mật khẩu cũ!");
         } else {
-            if (!newPass.equals(reptypePass)) {
-                System.out.println("Mật khẩu không trùng khớp!");
-            } else {
-                Users users = new Users(id, newPass);
-                usersService.changePassword(users);
-                RequestDispatcher dispatcher = req.getRequestDispatcher("changePass.jsp");
-                try {
+            try {
+                if (!newPass.equals(reptypePass)) {
+                    System.out.println("Mật khẩu không trùng khớp!");
+                } else {
+                    Users users = new Users(id, newPass);
+                    usersService.changePassword(users);
+
+                    RequestDispatcher dispatcher = req.getRequestDispatcher("changePass.jsp");
                     dispatcher.forward(req, resp);
-                } catch (ServletException | IOException e) {
-                    e.printStackTrace();
                 }
+            } catch (ServletException | IOException e) {
+                e.printStackTrace();
             }
         }
 
@@ -204,29 +228,34 @@ public class UsersController extends HttpServlet {
         String name = req.getParameter("nameEdit");
         String birth = req.getParameter("birthEdit");
         String email = req.getParameter("emailEdit");
-        String phone = req.getParameter("phoneEdit");
-
-        Users users = new Users(id, name, birth, email, phone);
-        usersService.updateProfile(users);
-
-        RequestDispatcher dispatcher = req.getRequestDispatcher("editProfile.jsp");
         try {
-            dispatcher.forward(req, resp);
+            if (!validateEmail(email)) {
+                System.out.println("Email không đúng định dạng!");
+
+                RequestDispatcher dispatcher = req.getRequestDispatcher("editProfile.jsp");
+                dispatcher.forward(req, resp);
+            } else {
+                String phone = req.getParameter("phoneEdit");
+
+                if (!validatePhone(phone)) {
+                    System.out.println("Số điện thoại không đúng định dạng!");
+
+                    RequestDispatcher dispatcher = req.getRequestDispatcher("editProfile.jsp");
+                    dispatcher.forward(req, resp);
+                } else {
+                    Users users = new Users(id, name, birth, email, phone);
+                    usersService.updateProfile(users);
+
+                    RequestDispatcher dispatcher = req.getRequestDispatcher("editProfile.jsp");
+                    dispatcher.forward(req, resp);
+                }
+            }
         } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }
 
     private void index(HttpServletRequest req, HttpServletResponse resp) {
-        String abc = "login-signup";
-
-        HttpSession session = req.getSession();
-        String email = (String) session.getAttribute("emailLog");
-        if (email != null) {
-            abc = "Xin chào" + email;
-        }
-        req.setAttribute("abc", abc);
-
         RequestDispatcher dispatcher = req.getRequestDispatcher("index2.jsp");
 
         try {
@@ -234,5 +263,19 @@ public class UsersController extends HttpServlet {
         } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private boolean validateEmail(String regex) {
+        String email_regex = "^[A-Za-z0-9]+[A-Za-z0-9]*@[A-Za-z]+(\\.[A-Za-z]+)$";
+        Pattern pattern = Pattern.compile(email_regex);
+        Matcher matcher = pattern.matcher(regex);
+        return matcher.matches();
+    }
+
+    private boolean validatePhone(String regex) {
+        String email_regex = "^(84|0[3|5|7|8|9])+([0-9]{8})$";
+        Pattern pattern = Pattern.compile(email_regex);
+        Matcher matcher = pattern.matcher(regex);
+        return matcher.matches();
     }
 }
