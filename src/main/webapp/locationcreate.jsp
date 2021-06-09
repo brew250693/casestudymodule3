@@ -140,7 +140,7 @@
             </tr>
         </table>
         <h4>
-            <a href="/">Quay lại trang chủ</a>
+            <a href="index2.jsp">Quay lại trang chủ</a>
         </h4>
     </form>
 </div>

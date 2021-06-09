@@ -90,7 +90,7 @@
         <div class="row align-items-center">
             <div class="col-md-3">
                 <div class="logo">
-                    <a href="/">
+                    <a href="index2.jsp">
                         <img src="img/logo.jpg" alt="Logo">
                     </a>
                 </div>
@@ -124,7 +124,7 @@
             </table>
         </div>
         <h4>
-            <a href="/">Quay lại trang chủ</a>
+            <a href="index2.jsp">Quay lại trang chủ</a>
         </h4>
     </form>
 </div>
